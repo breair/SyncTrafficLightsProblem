@@ -2,7 +2,7 @@
 import trafficlightools as tlt
 arivalTime = tlt.skipcycles([0, 48, 88, 120, 152])
 solutions = tlt.loadcases('solutions.txt')
-avgtolerances = [None] * len(solutions)
+avgtolerances = []
 for solution in solutions:
     beforeT = [None] * 5
     afterT = [None] * 5
@@ -12,6 +12,6 @@ for solution in solutions:
             time = arivalTime[caselightIndex]
             beforeT[caselightIndex] = time - tlt.toSwitchGreen[lightIndex]
             afterT[caselightIndex] = 40 - beforeT[caselightIndex]
-    avgtolerances[solutions.index(solution)] = (sum(beforeT)+sum(afterT))/2
+    avgtolerances.append(sum(beforeT)+sum(afterT)/2)
 print("The best solution is:" +
       solutions[avgtolerances.index(max(avgtolerances))])
